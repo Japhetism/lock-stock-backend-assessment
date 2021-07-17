@@ -28,4 +28,5 @@ Server will be running on [http://0.0.0.0:9000](http://0.0.0.0:9000).
 
 This project has two endpoints that can be use to get all courses and universities
 The endpoint to get all courses is [http://0.0.0.0:9000/api/v1/courses](http://0.0.0.0:9000/api/v1/courses).
+
 The endpoint to get all universities is [http://0.0.0.0:9000/api/v1/universities](http://0.0.0.0:9000/api/v1/universities).
