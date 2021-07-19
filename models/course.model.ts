@@ -21,12 +21,10 @@ Course.find = (result: any) => {
     `;
     sql.query(statement, (err: any, res: any) => {
         if (err) {
-            console.log("error: ", err);
             result(null, err);
             return;
         }
 
-        console.log("courses: ", res);
         result(null, res);
     })
 };

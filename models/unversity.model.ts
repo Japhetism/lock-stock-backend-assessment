@@ -9,18 +9,20 @@ const University = function(this: any, university: { university_id: any;  univer
 };
 
 University.find = (result: any) => {
-    const statement = `SELECT * FROM University 
-        INNER JOIN 
-            Country ON Country.country_id = University.country_id
-    `
+    const statement = `SELECT uni.university_id, uni.university_name, uni.country_name, ROUND(AVG(annual_tuition), 2) AS estimated_tuition, COUNT(*) AS number_of_courses FROM 
+        (
+            SELECT University.university_id, university_name, country_name, University.country_id, course_id, course_name, annual_tuition, level_id FROM University 
+            INNER JOIN Country ON Country.country_id  = University.country_id
+            INNER JOIN Course ON Course.university_id = University.university_id
+        ) AS uni
+        GROUP BY uni.university_id
+        `
     sql.query(statement, (err: any, res: any) => {
         if (err) {
-            console.log("error: ", err);
             result(null, err);
             return;
         }
 
-        console.log("universities: ", res);
         result(null, res);
     })
 };

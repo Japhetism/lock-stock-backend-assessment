@@ -12,7 +12,6 @@ exports.getAll = (Model: any[]) => async (req: { query: any; }, res: { status: (
                 const err = new AppError(process.env.HTTP_INTERNAL_SERVER_ERROR_STATUS_CODE, process.env.ERROR_STATUS, error);
                 return next(err);
             } else {
-                console.log('length is ', data.length)
                 const features = new APIFeatures(data, req.query);
                 const doc = await features.query;
                 res.status(process.env.HTTP_OK_STATUS_CODE).json({
